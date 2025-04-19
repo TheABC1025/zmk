@@ -1,0 +1,107 @@
+/dts-v1/;
+#include <nordic/nrf52840_qiaa.dtsi>
+#include "mdbt50q_1m-pinctrl.dtsi"
+
+/ {
+    model = "nice!nano";
+    compatible = "nice,nano";
+
+    chosen {
+        zephyr,code-partition = &slot0_partition;
+        zephyr,sram = &sram0;
+        zephyr,flash = &flash0;
+    };
+};
+
+&uart0 {
+    status = "disabled";
+};
+
+&i2c0 {
+    status = "disabled";
+};
+
+&adc {
+    status = "disabled";
+};
+
+&gpiote {
+    status = "okay";
+};
+
+&gpio0 {
+    status = "okay";
+};
+
+&timer0 {
+    status = "okay";
+};
+
+&timer1 {
+    status = "okay";
+};
+
+&timer2 {
+    status = "okay";
+};
+
+// &flash0 {
+//     /*
+//      * For more information, see:
+//      * http://docs.zephyrproject.org/latest/devices/dts/flash_partitions.html
+//      */
+//     partitions {
+//         compatible = "fixed-partitions";
+//         #address-cells = <1>;
+//         #size-cells = <1>;
+
+//         sd_partition: partition@0 {
+//             reg = <0x00000000 0x00026000>;
+//         };
+//         code_partition: partition@26000 {
+//             reg = <0x00026000 0x000c6000>;
+//         };
+
+//         /*
+//          * The flash starting at 0x000ec000 and ending at
+//          * 0x000f3fff is reserved for use by the application.
+//          */
+
+//         /*
+//          * Storage partition will be used by FCB/LittleFS/NVS
+//          * if enabled.
+//          */
+//         storage_partition: partition@ec000 {
+//             reg = <0x000ec000 0x00008000>;
+//         };
+
+//         boot_partition: partition@f4000 {
+//             reg = <0x000f4000 0x0000c000>;
+//         };
+//     };
+// };
+
+&flash0 {
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        boot_partition: partition@0 {
+            label = "mcuboot";
+            reg = <0x00000000 0x8000>;  // サイズを小さくする
+        };
+        slot0_partition: partition@8000 {
+            label = "image-0";
+            reg = <0x00008000 0x38000>;  // サイズを調整
+        };
+        slot1_partition: partition@40000 {
+            label = "image-1";
+            reg = <0x00040000 0x38000>;  // サイズを調整
+        };
+        scratch_partition: partition@78000 {
+            label = "scratch";
+            reg = <0x00078000 0x8000>;  // サイズを小さくする
+        };
+    };
+};
