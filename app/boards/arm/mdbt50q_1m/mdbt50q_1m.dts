@@ -3,8 +3,8 @@
 #include "mdbt50q_1m-pinctrl.dtsi"
 
 / {
-    model = "nice!nano";
-    compatible = "nice,nano";
+    model = "mdbt50q_1m";
+    compatible = "mdbt50q,1m";
 
     chosen {
         zephyr,code-partition = &slot0_partition;

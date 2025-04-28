@@ -1,17 +1,16 @@
-# Enable Nordic nRF52832 SoC
-CONFIG_SOC_NRF52832_QFAA=y
+if BOARD_MDBT50Q_1M
 
-# Enable required peripherals
-CONFIG_GPIO=y
-CONFIG_UART_CONSOLE=y
+config BOARD
+    default "mdbt50q_1m"
 
-# Set the default stack size
-CONFIG_MAIN_STACK_SIZE=2048
+if USB_DEVICE_STACK
 
-# Enable MCUBoot support
-CONFIG_BOOTLOADER_MCUBOOT=y
+config USB_NRFX
+    default y
 
-# Enable Bluetooth support
-CONFIG_BT=y
-CONFIG_BT_PERIPHERAL=y
-CONFIG_BT_DEVICE_NAME="MDBT50Q_1M"
+endif # USB_DEVICE_STACK
+
+config BT_CTLR
+    default BT
+
+endif # BOARD_MDBT50Q_1M
