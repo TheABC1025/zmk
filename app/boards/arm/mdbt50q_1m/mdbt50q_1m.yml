@@ -1,0 +1,10 @@
+file_format: "1"
+id: mdbt50q_1m
+name: MDBT50Q-1M
+type: board
+arch: arm
+outputs:
+  - usb
+  - ble
+url: none
+exposes: [fuji_mdbt50q_1m]
