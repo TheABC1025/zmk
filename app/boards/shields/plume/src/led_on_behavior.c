@@ -1,6 +1,12 @@
 #include <zephyr/device.h>
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/init.h>
+#include <logging/log.h>
+
+LOG_MODULE_REGISTER(my_module, LOG_LEVEL_INF);
+
+LOG_INF("This is an info log.");
+LOG_ERR("This is an error log.");
 
 static const struct device *led_dev;
 
